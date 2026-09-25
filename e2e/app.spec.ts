@@ -127,9 +127,14 @@ test("registration, protected sharing, atomic API access, ownership and revocati
   await expect(reader.locator("main").getByRole("alert")).toContainText(
     "revoked",
   );
+  // Use server time and allow for WAN latency when testing the deployed app.
+  // A 2.5-second client deadline can expire before the create request arrives.
+  const clockResponse = await guest.request.get("/");
+  const serverNow = Date.parse(clockResponse.headers()["date"]);
+  expect(Number.isFinite(serverNow)).toBe(true);
   const expiring = await make({
     shareType: "TIME_BASED",
-    expiresAt: new Date(Date.now() + 2500).toISOString(),
+    expiresAt: new Date(serverNow + 15000).toISOString(),
   });
   await reader.goto(expiring.shareUrl);
   await expect
@@ -140,7 +145,7 @@ test("registration, protected sharing, atomic API access, ownership and revocati
         );
         return (await res.json()).status;
       },
-      { timeout: 10000 },
+      { timeout: 30000 },
     )
     .toBe("EXPIRED");
   await reader.reload();

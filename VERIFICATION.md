@@ -61,3 +61,15 @@ Production HTTPS/cookie behavior, hosting log redaction, managed connection limi
 - Application form: user confirmed prior submission on 25 September 2026; no duplicate submission performed.
 - Adarsh's actual webcam-and-screen recording (<= 8 minutes), upload, and reviewer-access verification.
 - Update the prepared Gmail draft only with verified real URLs and live credentials; send only after every mandatory pre-send condition passes.
+
+# Public release verification — 25 September 2026
+
+- Repository: https://github.com/oyadarsh-hue/secure-note-sharing-app; full source published and inspected, with environment files excluded.
+- GitHub Actions run https://github.com/oyadarsh-hue/secure-note-sharing-app/actions/runs/36108283626 passed the full Linux/PostgreSQL 17 pipeline on `eea217e634e42571d6691132a59d6c5b8de98ee0`.
+- Production: https://secure-note-sharing-app-nine.vercel.app, Vercel production deployment `5bN4yfjANX2EVGxgV4SHxUgcgJZr`, with Prisma Postgres Free. Build command runs migrations, reviewer seed and production build. Vercel reported Ready.
+- Actual live Playwright run: **2 passed, 0 failed, 47.6 seconds**. Registration/login, protected wrong-key count zero, successful one-time opening/count one, second-attempt refusal, anonymous owner access refusal, concurrent HTTP results 200/410 and count one, public time-based access, revoke, expiry, cross-origin rejection, sign-out/login, mobile/tablet layout all passed.
+- Separate live check: reviewer login succeeded; the session cookie has Secure, HttpOnly and SameSite=Lax; HTTPS login response has HSTS, X-Frame-Options DENY and Referrer-Policy no-referrer. No cookie values were printed or committed.
+- Initial live expiry test used a 2.5-second client deadline and was correctly rejected when it arrived too late. The test now uses server response time plus 15 seconds, polls expiry for up to 30 seconds, and allows bounded network latency for browser assertions. Application security behavior was not relaxed. A subsequent 5-second login assertion timeout was also corrected to a bounded 20-second assertion window.
+- Final webcam recording and email submission remain pending the author's real recording. Scripts are not a video.
+
+The historical local verification below records the original development run; its old external-release statuses are superseded by this section.

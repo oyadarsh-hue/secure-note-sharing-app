@@ -3,7 +3,8 @@ export default defineConfig({
   testDir: "./e2e",
   fullyParallel: false,
   workers: 1,
-  timeout: 60000,
+  timeout: 90000,
+  expect: { timeout: 20000 },
   use: {
     baseURL: process.env.E2E_BASE_URL || "http://localhost:3000",
     headless: true,
