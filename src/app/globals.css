@@ -1,0 +1,26 @@
+@import "tailwindcss";
+:root {
+  color-scheme: light;
+}
+body {
+  background: #f7f8f5;
+  color: #202c27;
+  font-family: Arial, Helvetica, sans-serif;
+}
+button,
+a,
+select {
+  touch-action: manipulation;
+}
+button {
+  cursor: pointer;
+}
+.hint {
+  @apply mt-2 text-sm leading-6 text-stone-500;
+}
+.eyebrow {
+  @apply text-xs font-bold uppercase tracking-[0.2em] text-emerald-800;
+}
+::selection {
+  background: #bee7d1;
+}

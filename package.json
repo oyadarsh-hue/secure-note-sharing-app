@@ -1,0 +1,56 @@
+{
+  "name": "peacock-secure-notes-poc",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run --configLoader native",
+    "test:concurrency": "vitest run --configLoader native tests/concurrency.test.ts",
+    "test:e2e": "playwright test",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "node prisma/seed.mjs",
+    "security:scan": "node scripts/secret-scan.mjs"
+  },
+  "dependencies": {
+    "next": "16.3.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "next-auth": "4.24.15",
+    "hono": "^4.12.0",
+    "@prisma/client": "6.19.3",
+    "bcryptjs": "^3.0.2",
+    "zod": "^4.0.0",
+    "lucide-react": "^0.577.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.0.0",
+    "@radix-ui/react-slot": "^1.2.0"
+  },
+  "devDependencies": {
+    "prisma": "6.19.3",
+    "typescript": "^5.9.3",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.3.6",
+    "prettier": "^3.6.0",
+    "tailwindcss": "^4.2.0",
+    "@tailwindcss/postcss": "^4.2.0",
+    "vitest": "5.0.1",
+    "@playwright/test": "^1.58.0",
+    "dotenv": "^17.0.0"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "overrides": {
+    "deepmerge-ts": "8.0.2"
+  }
+}
