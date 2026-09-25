@@ -2,7 +2,7 @@
 
 Secure, expiring note sharing by **Adarsh S**. A focused Next.js application with owner management, generated access keys, and PostgreSQL-enforced one-time access.
 
-**Release status:** local implementation is verified: 23 database tests and 2 browser tests pass, along with lint, typecheck and production build. Public repository, deployment, and webcam recording must be verified separately; no public URLs are claimed here. See `VERIFICATION.md` for the final evidence and `DEPLOYMENT.md` for release steps.
+**Release status:** published at [oyadarsh-hue/secure-note-sharing-app](https://github.com/oyadarsh-hue/secure-note-sharing-app). [GitHub Actions verification](https://github.com/oyadarsh-hue/secure-note-sharing-app/actions/runs/36106724989) passed migrations, lint, typecheck, formatting, 23 database tests, concurrency checks, audit, production build and 2 browser tests. Deployment and the real webcam recording are still pending verification. See `VERIFICATION.md` for local evidence and `DEPLOYMENT.md` for release steps.
 
 ## Run locally
 

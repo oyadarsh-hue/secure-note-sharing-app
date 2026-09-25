@@ -34,3 +34,7 @@ If a repository is already created, use `git remote add origin https://github.co
 - Back up the database with provider-managed encryption; restrict administrator access.
 - Rotate auth secrets to invalidate sessions if needed. Disable/restrict registration when the assessment is complete and take down the synthetic demo.
 - Review preview environments: each needs its own auth origin and preferably isolated data.
+
+# Vercel assessment build
+
+`vercel.json` applies committed migrations, seeds the dedicated reviewer account, and builds the application. Configure a real PostgreSQL `DATABASE_URL`, assigned HTTPS `NEXTAUTH_URL`, random `NEXTAUTH_SECRET`, `DEMO_EMAIL`, `DEMO_PASSWORD`, and `TRUSTED_PROXY=vercel` before deploying. Never use the `.env.example` placeholders in production. Each deployment resets only the configured demo account's password to `DEMO_PASSWORD`; do not configure a personal account here. Preview deployments require a separate database and their own environment values; do not connect previews to the assessment production database.
